@@ -129,3 +129,14 @@ db.define_table('answer',
 				Field('subproject_id', db.subproject, required=True),
 				Field('user_id', db.auth_user, default= auth.user_id, required=True),
 				signature)
+
+# Briefing media table
+db.define_table('media', 
+				Field('name', 'string', required=True),
+				Field('description', 'text', required=True),
+				Field('visbility', 'boolean', required=True),
+				Field('project_id', db.project, required=True),
+				Field('question_id', db.question, required=False),
+				Field('answer_id', db.question, required=False),
+				Field('file', 'upload', required=True),
+				signature)
