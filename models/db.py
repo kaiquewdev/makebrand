@@ -79,3 +79,53 @@ use_janrain(auth,filename='private/janrain.key')
 ## >>> for row in rows: print row.id, row.myfield
 #########################################################################
 
+client = db.Table(db, 'client', 
+					  Field('name', 'string', required=True),
+					  Field('description', 'text', required=True),
+					  Field('visbility', 'boolean', required=True),
+					  Field('user_id', db.auth_user, default= auth.user_id, required=True) )
+
+# Signature, register datatime of the data who was create
+signature = db.Table(db, 'signature',
+						 Field('created_on', 'datetime', default=request.now),
+						 Field('created_by', db.auth_user, default=auth.user_id),			
+						 Field('updated_on', 'datetime', default=request.now),
+						 Field('updated_by', db.auth_user, default=auth.user_id) )
+
+# Briefing project table
+db.define_table('project', 
+				Field('name', 'string', required=True),
+				Field('description', 'text', required=True),
+				Field('terminated', 'boolean', required=True),
+				Field('user_id', db.auth_user, default= auth.user_id, required=True), 
+				client,
+				signature)
+								
+# Briefing sub project table
+db.define_table('subproject', 
+				Field('name', 'string', required=True),
+				Field('description', 'text', required=True),
+				Field('visbility', 'boolean', required=True),
+				Field('project_id', db.project, required=True),
+				Field('user_id', db.auth_user, default= auth.user_id, required=True),
+				signature)
+
+# Briefing question table
+db.define_table('question', 
+				Field('name', 'string', required=True),
+				Field('description', 'text', required=True),
+				Field('visbility', 'boolean', required=True),
+				Field('project_id', db.project, required=True),
+				Field('subproject_id', db.project, required=True),
+				Field('user_id', db.auth_user, default= auth.user_id, required=True),
+				signature)
+
+# Briefing answer table
+db.define_table('answer', 
+				Field('name', 'string', required=True),
+				Field('description', 'text', required=True),
+				Field('visbility', 'boolean', required=True),
+				Field('project_id', db.project, required=True),
+				Field('subproject_id', db.subproject, required=True),
+				Field('user_id', db.auth_user, default= auth.user_id, required=True),
+				signature)
