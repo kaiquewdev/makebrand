@@ -99,7 +99,7 @@ db.define_table('project',
 				Field('name', 'string', required=True),
 				Field('description', 'text', required=True),
 				Field('terminated', 'boolean', required=True),
-				Field('client_id', db.client, required=True),
+				Field('client_id', 'boolean', required=True),
 				Field('user_id', db.auth_user, default= auth.user_id, required=True), 
 				signature)
 								

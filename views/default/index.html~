@@ -2,6 +2,7 @@
 
 <section class="mainContent">
 	<article>
+		
 		<header>
 			<h3> {{=T('Brand Panel')}} </h3>
 			<hr />
@@ -22,10 +23,14 @@
 			</nav>
 			<hr />
 		</header>
+		
 		<div class="contentHolder">
 		    
 		</div>
+		
 		<footer>
+		    
 		</footer>
+
 	</article>
 </section>
