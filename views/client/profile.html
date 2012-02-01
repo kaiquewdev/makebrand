@@ -1,0 +1,61 @@
+{{extend 'layout.html'}}
+
+<section class="mainContent">
+	<article>
+		
+		<header>
+			<h3> {{=profileClient.name}} </h3>
+			<hr />
+				<section class="descriptionHolder">
+					<article>
+						<header>
+							<h5> {{=T('Description:')}} </h5>
+						</header>
+						<div class="description">
+							<p>{{=profileClient.description}}</p>
+						</div>
+					</article>
+				</section>
+			<hr />
+		</header>
+		
+		<div class="contentHolder">
+			<section>
+				<article>
+					<header>
+						<h5> {{=T('Projects linked')}} </h5>
+						<hr />
+					</header>
+					<div>
+						{{if projectsByThisClient:}}
+							<table>
+								<th>
+									<tr>
+										<td>{{=T('Project name')}}</td>
+										<td></td>
+									</tr>
+								</th>
+								<tbody>
+										{{for row in projectsByThisClient:}}
+											<tr>
+												<td>{{=row.name}}</td>
+												<td>{{=A( T('View deails of this project'), _href=URL('project', 'profile', args=[row.id]) )}}</td>
+											</tr>
+										{{pass}}
+								</tbody>
+							</table>
+						{{else:}}
+							{{=P( T('No projects in this client') )}}
+						{{pass}}
+					</div>
+					<footer>
+					</footer>
+				</article>
+			</section>
+		</div>
+		<footer>
+		    
+		</footer>
+
+	</article>
+</section>

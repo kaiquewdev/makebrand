@@ -22,4 +22,12 @@ def new():
 
 @auth.requires_login()
 def profile():
-	pass
+	if not request.args: redirect(URL('client', 'index'))
+	
+	# Get information of this client, refencied by id in request args
+	profileClient = Table(db, 'client').get({'id': request.args[0], 'visibility': True})[0]
+	# Get name of all projects, created for this client
+	projectsByThisClient = Table(db, 'project').get({'client_id': profileClient.id, 'visibility': True})
+	
+	return {'profileClient': profileClient,
+			'projectsByThisClient': projectsByThisClient}
