@@ -51,7 +51,7 @@ p24
 (dp25
 S'hmac_key'
 p26
-S'2dd6a47e-ce62-4fa9-bd77-42d6eb4a58cd'
+S'309f0ea4-099c-4187-bbc5-af668789f664'
 p27
 sS'remember'
 p28
@@ -64,7 +64,7 @@ p30
 cdatetime
 datetime
 p31
-(S'\x07\xdc\x02\x01\t\x14!\x03z\xe2'
+(S'\x07\xdc\x02\x01\x0c\x08\x1a\t\x8c\x94'
 tRp32
 sS'user'
 p33
@@ -136,10 +136,10 @@ S'd88f24e9-906d-4750-8644-a87a0bdad294'
 p52
 sS'_formkey[client/create]'
 p53
-S'9a2645e2-3dbb-46e4-a2ab-4a2d72bf62a5'
+S'9a94b2fe-2c99-4e11-8e8a-e53a457bda5a'
 p54
 sS'_formkey[login]'
 p55
-S'6239568c-a8ef-4045-97fe-c9bc0aa60f2d'
+S'db0cae46-b29d-4c34-94dc-5a7e4849659a'
 p56
 s.

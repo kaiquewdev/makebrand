@@ -88,59 +88,58 @@ signature = db.Table(db,
 					 Field('updated_on', 'datetime', default=request.now),
 					 Field('updated_by', db.auth_user, default=auth.user_id) )
 
+# Briefing media table
+db.define_table('media', 
+				Field('name', 'string'),
+				Field('description', 'text'),
+				Field('visibility', 'boolean'),
+				Field('file', 'upload'),
+				signature)
+				
 # Briefing client table
 db.define_table('client', 
-                Field('name', 'string', required=True),
-                Field('description', 'text', required=True),
-                Field('visibility', 'boolean', required=True),
-                Field('user_id', db.auth_user, default= auth.user_id, required=True), 
+                Field('name', 'string', requires=[IS_NOT_EMPTY()]),
+                Field('description', 'text', requires=[IS_NOT_EMPTY()]),
+                Field('visibility', 'boolean'),
+                Field('user_id', db.auth_user, default= auth.user_id),
+                Field('avatar', 'upload', db.media), 
                 signature)
 
 # Briefing project table
 db.define_table('project', 
-				Field('name', 'string', required=True),
-				Field('description', 'text', required=True),
-				Field('terminated', 'boolean', required=True),
-				Field('client_id', db.client, required=True),
-				Field('user_id', db.auth_user, default= auth.user_id, required=True), 
+				Field('name', 'string'),
+				Field('description', 'text'),
+				Field('terminated', 'boolean'),
+				Field('client_id', db.client),
+				Field('user_id', db.auth_user, default= auth.user_id),
 				signature)
 								
 # Briefing sub project table
 db.define_table('subproject', 
-				Field('name', 'string', required=True),
-				Field('description', 'text', required=True),
-				Field('visibility', 'boolean', required=True),
-				Field('project_id', db.project, required=True),
-				Field('user_id', db.auth_user, default= auth.user_id, required=True),
+				Field('name', 'string'),
+				Field('description', 'text'),
+				Field('visibility', 'boolean'),
+				Field('project_id', db.project),
+				Field('user_id', db.auth_user, default= auth.user_id),
 				signature)
 
 # Briefing question table
 db.define_table('question', 
-				Field('name', 'string', required=True),
-				Field('description', 'text', required=True),
-				Field('visibility', 'boolean', required=True),
-				Field('project_id', db.project, required=True),
-				Field('subproject_id', db.project, required=True),
-				Field('user_id', db.auth_user, default= auth.user_id, required=True),
+				Field('name', 'string'),
+				Field('description', 'text'),
+				Field('visibility', 'boolean'),
+				Field('project_id', db.project),
+				Field('subproject_id', db.project),
+				Field('user_id', db.auth_user, default= auth.user_id),
 				signature)
 
 # Briefing answer table
 db.define_table('answer', 
-				Field('name', 'string', required=True),
-				Field('description', 'text', required=True),
-				Field('visibility', 'boolean', required=True),
-				Field('project_id', db.project, required=True),
-				Field('subproject_id', db.subproject, required=True),
-				Field('user_id', db.auth_user, default= auth.user_id, required=True),
-				signature)
-
-# Briefing media table
-db.define_table('media', 
-				Field('name', 'string', required=True),
-				Field('description', 'text', required=True),
-				Field('visibility', 'boolean', required=True),
-				Field('project_id', db.project, required=True),
-				Field('question_id', db.question, required=False),
-				Field('answer_id', db.question, required=False),
-				Field('file', 'upload', required=True),
+				Field('name', 'string'),
+				Field('description', 'text'),
+				Field('visibility', 'boolean'),
+				Field('project_id', db.project),
+				Field('subproject_id', db.subproject),
+				Field('user_id', db.auth_user, default= auth.user_id),
+				Field('file', db.media),
 				signature)
