@@ -1,0 +1,63 @@
+{{extend 'layout.html'}}
+
+<section class="mainContent">
+	<article>
+		
+		<header>
+			<h3> {{=T('Briefing Projects Panel')}} </h3>
+			<hr />
+			<nav class="mainGuideMenu">
+				<ul>
+					<li>
+						<a href="{{=URL('project', 'new')}}">{{=T('Create new briefing project')}}</a>
+					</li>
+				</ul>
+			</nav>
+			<hr />
+		</header>
+		
+		<div class="contentHolder">
+			<section>
+				<article>
+					<header>
+						<h4> {{=T('All projects')}} </h4>
+						<hr />
+					</header>
+					<div>
+						{{if projects.get({'visibility': True}):}}
+							<table>
+								<th>
+									<tr>
+										<td>{{=T('Project name')}}</td>
+										<td>{{=T('Client name')}}</td>
+										<td>{{=T('Creation date')}}</td>
+										<td></td>
+									</tr>
+								</th>
+								<tbody>
+									{{for row in projects.get({'visibility': True}, order='created_on'):}}
+										<tr>
+											<td>{{=row.name}}</td>
+											<td>{{=A(row.client_id.get('name'), _href=URL('client', 'profile', args=[row.client_id.get('id')]))}}</td>
+											<td>{{='{0:%d/%m/%y - %H:%M:%S}'.format(row.created_on)}}</td>
+											<td>{{=A( T('View details of this project'), _href=URL('project', 'profile', args=[row.id]) )}}</td>
+										</tr>
+									{{pass}}
+								</tbody>
+							</table>
+						{{else:}}
+							{{=SPAN( P( T( 'Not clients registered.' ), ' ', A( T('Insert new'), _href=URL('client', 'new') ) ) )}}
+					   	{{pass}}
+					</div>
+					<footer>
+					</footer>
+				</article>
+			</section>
+		</div>
+		
+		<footer>
+		    
+		</footer>
+
+	</article>
+</section>
