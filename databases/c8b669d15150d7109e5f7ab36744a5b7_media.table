@@ -1,50 +1,50 @@
 (dp1
-S'name'
+S'answer_id'
 p2
 (dp3
 S'type'
 p4
-S'string'
+S'reference question'
 p5
 sS'sortable'
 p6
-I2
+I7
 sS'sql'
 p7
-S'CHAR(512)'
+S'INTEGER REFERENCES question(id) ON DELETE CASCADE'
 p8
-ssS'question_id'
+ssS'description'
 p9
 (dp10
 g4
-S'reference question'
-p11
-sg6
-I6
-sg7
-S'INTEGER REFERENCES question(id) ON DELETE CASCADE'
-p12
-ssS'description'
-p13
-(dp14
-g4
 S'text'
-p15
+p11
 sg6
 I3
 sg7
 S'TEXT'
-p16
+p12
 ssS'created_by'
-p17
-(dp18
+p13
+(dp14
 g4
 S'reference auth_user'
-p19
+p15
 sg6
 I10
 sg7
 S'INTEGER REFERENCES auth_user(id) ON DELETE CASCADE'
+p16
+ssS'name'
+p17
+(dp18
+g4
+S'string'
+p19
+sg6
+I2
+sg7
+S'CHAR(512)'
 p20
 ssS'created_on'
 p21
@@ -114,13 +114,13 @@ p43
 ssS'visbility'
 p44
 (dp45
-S'sortable'
+S'type'
 p46
-I4
-sS'type'
-p47
 S'boolean'
+p47
+sS'sortable'
 p48
+I4
 sS'sql'
 p49
 S'CHAR(1)'
@@ -136,14 +136,14 @@ I1
 sg7
 S'INTEGER PRIMARY KEY AUTOINCREMENT'
 p54
-ssS'answer_id'
+ssS'question_id'
 p55
 (dp56
 g4
 S'reference question'
 p57
 sg6
-I7
+I6
 sg7
 S'INTEGER REFERENCES question(id) ON DELETE CASCADE'
 p58

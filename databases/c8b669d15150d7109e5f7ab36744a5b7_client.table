@@ -24,47 +24,47 @@ I2
 sg7
 S'CHAR(512)'
 p12
-ssS'visibility'
+ssS'description'
 p13
 (dp14
 g4
-S'boolean'
+S'text'
 p15
+sg6
+I3
+sg7
+S'TEXT'
+p16
+ssS'visibility'
+p17
+(dp18
+g4
+S'boolean'
+p19
 sg6
 I4
 sg7
 S'CHAR(1)'
-p16
+p20
 ssS'created_on'
-p17
-(dp18
+p21
+(dp22
 g4
 S'datetime'
-p19
+p23
 sg6
 I6
 sg7
 S'TIMESTAMP'
-p20
-ssS'created_by'
-p21
-(dp22
-g4
-S'reference auth_user'
-p23
-sg6
-I7
-sg7
-S'INTEGER REFERENCES auth_user(id) ON DELETE CASCADE'
 p24
-ssS'updated_by'
+ssS'created_by'
 p25
 (dp26
 g4
 S'reference auth_user'
 p27
 sg6
-I9
+I7
 sg7
 S'INTEGER REFERENCES auth_user(id) ON DELETE CASCADE'
 p28
@@ -72,7 +72,7 @@ ssS'updated_on'
 p29
 (dp30
 g4
-g19
+g23
 sg6
 I8
 sg7
@@ -81,13 +81,13 @@ p31
 ssS'visbility'
 p32
 (dp33
-S'sortable'
+S'type'
 p34
-I4
-sS'type'
-p35
 S'boolean'
+p35
+sS'sortable'
 p36
+I4
 sS'sql'
 p37
 S'CHAR(1)'
@@ -103,15 +103,15 @@ I1
 sg7
 S'INTEGER PRIMARY KEY AUTOINCREMENT'
 p42
-ssS'description'
+ssS'updated_by'
 p43
 (dp44
 g4
-S'text'
+S'reference auth_user'
 p45
 sg6
-I3
+I9
 sg7
-S'TEXT'
+S'INTEGER REFERENCES auth_user(id) ON DELETE CASCADE'
 p46
 ss.

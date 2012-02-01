@@ -4,18 +4,15 @@
 	<article>
 		
 		<header>
-			<h3> {{=T('Client Panel')}} </h3>
+			<h3> {{=T('Clients Panel')}} </h3>
 			<hr />
 			<nav class="mainGuideMenu">
 				<ul>
 					<li>
-						<a href="{{=URL('project', 'new')}}">{{=T('Create new briefing project')}}</a> |
-						<a href="{{=URL('project', 'index')}}">{{=T('Visualize briefing projects')}}</a>
+						<a href="{{=URL('client', 'new')}}">{{=T('Insert new client')}}</a>
 					</li>
-					
 					<li>
-						<a href="{{=URL('client', 'new')}}">{{=T('Insert new client')}}</a> |
-						<a href="{{=URL('client', 'index')}}">{{=T('Visualize clients')}}</a>
+						<a href="{{=URL('project', 'index')}}">{{=T('Visualize projects')}}</a>
 					</li>
 				</ul>
 			</nav>
@@ -26,7 +23,7 @@
 			<section>
 				<article>
 					<header>
-						<h4>{{=T('Last clients updated')}}</h4>
+						<h4>{{=T('All visible clients')}}</h4>
 						<hr />
 					</header>
 					<div>
@@ -35,7 +32,7 @@
 								<th>
 									<tr>
 										<td>{{=T('Client name')}}</td>
-										<td>{{=T('Last update')}}</td>
+										<td>{{=T('Creation date')}}</td>
 										<td></td>
 									</tr>
 								</th>
@@ -43,8 +40,8 @@
 									{{for row in clients.get({'visibility': True}, order='created_on'):}}
 										<tr>
 											<td>{{=row.name}}</td>
-											<td>{{='{0:%d/%m/%y - %H:%M:%S}'.format(row.updated_on)}}</td>
-											<td>{{=A( T('View this client'), _href=URL('client', 'profile', args=[row.id]) )}}</td>
+											<td>{{='{0:%d/%m/%y - %H:%M:%S}'.format(row.created_on)}}</td>
+											<td>{{=A( T('View details of this client'), _href=URL('client', 'profile', args=[row.id]) )}}</td>
 										</tr>
 									{{pass}}
 								</tbody>
