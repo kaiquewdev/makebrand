@@ -140,3 +140,21 @@ CREATE TABLE client(
 success!
 timestamp: 2012-01-31T16:32:19.785090
 ALTER TABLE project ADD client_id INTEGER REFERENCES client(id) ON DELETE CASCADE;
+timestamp: 2012-02-01T10:04:01.398275
+ALTER TABLE client ADD visibility CHAR(1);
+timestamp: 2012-02-01T10:04:01.598332
+ALTER TABLE subproject ADD visibility CHAR(1);
+timestamp: 2012-02-01T10:04:01.857079
+ALTER TABLE question ADD visibility CHAR(1);
+timestamp: 2012-02-01T10:04:02.041194
+ALTER TABLE answer ADD visibility CHAR(1);
+timestamp: 2012-02-01T10:04:02.215189
+ALTER TABLE media ADD visibility CHAR(1);
+timestamp: 2012-02-01T10:30:50.513774
+ALTER TABLE client ADD created_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE;
+timestamp: 2012-02-01T10:30:50.680235
+ALTER TABLE client ADD created_on TIMESTAMP;
+timestamp: 2012-02-01T10:30:50.822720
+ALTER TABLE client ADD updated_on TIMESTAMP;
+timestamp: 2012-02-01T10:30:50.963442
+ALTER TABLE client ADD updated_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE;

@@ -81,18 +81,20 @@ use_janrain(auth,filename='private/janrain.key')
 
 
 # Signature, register datatime of the data who was create
-signature = db.Table(db, 'signature',
-						 Field('created_on', 'datetime', default=request.now),
-						 Field('created_by', db.auth_user, default=auth.user_id),			
-						 Field('updated_on', 'datetime', default=request.now),
-						 Field('updated_by', db.auth_user, default=auth.user_id) )
+signature = db.Table(db, 
+					 'signature',
+					 Field('created_on', 'datetime', default=request.now),
+					 Field('created_by', db.auth_user, default=auth.user_id),			
+					 Field('updated_on', 'datetime', default=request.now),
+					 Field('updated_by', db.auth_user, default=auth.user_id) )
 
 # Briefing client table
 db.define_table('client', 
                 Field('name', 'string', required=True),
                 Field('description', 'text', required=True),
-                Field('visbility', 'boolean', required=True),
-                Field('user_id', db.auth_user, default= auth.user_id, required=True) )
+                Field('visibility', 'boolean', required=True),
+                Field('user_id', db.auth_user, default= auth.user_id, required=True), 
+                signature)
 
 # Briefing project table
 db.define_table('project', 
@@ -107,7 +109,7 @@ db.define_table('project',
 db.define_table('subproject', 
 				Field('name', 'string', required=True),
 				Field('description', 'text', required=True),
-				Field('visbility', 'boolean', required=True),
+				Field('visibility', 'boolean', required=True),
 				Field('project_id', db.project, required=True),
 				Field('user_id', db.auth_user, default= auth.user_id, required=True),
 				signature)
@@ -116,7 +118,7 @@ db.define_table('subproject',
 db.define_table('question', 
 				Field('name', 'string', required=True),
 				Field('description', 'text', required=True),
-				Field('visbility', 'boolean', required=True),
+				Field('visibility', 'boolean', required=True),
 				Field('project_id', db.project, required=True),
 				Field('subproject_id', db.project, required=True),
 				Field('user_id', db.auth_user, default= auth.user_id, required=True),
@@ -126,7 +128,7 @@ db.define_table('question',
 db.define_table('answer', 
 				Field('name', 'string', required=True),
 				Field('description', 'text', required=True),
-				Field('visbility', 'boolean', required=True),
+				Field('visibility', 'boolean', required=True),
 				Field('project_id', db.project, required=True),
 				Field('subproject_id', db.subproject, required=True),
 				Field('user_id', db.auth_user, default= auth.user_id, required=True),
@@ -136,7 +138,7 @@ db.define_table('answer',
 db.define_table('media', 
 				Field('name', 'string', required=True),
 				Field('description', 'text', required=True),
-				Field('visbility', 'boolean', required=True),
+				Field('visibility', 'boolean', required=True),
 				Field('project_id', db.project, required=True),
 				Field('question_id', db.question, required=False),
 				Field('answer_id', db.question, required=False),
