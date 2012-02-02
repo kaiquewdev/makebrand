@@ -56,3 +56,52 @@ class Table( object ):
 				return db(table).count()
 		except Exception:
 			return False
+
+# Create html elements, based on fields table of the db
+class HTMLstick( object ):
+	# Define a default properties, for create a element
+	def __init__(self, db, tablename=''):
+		self.db = db
+		self.tablename = tablename
+	
+	# get information of table for mout structure of a future element
+	def struct(self, value='', label=''):
+		db = self.db
+		table = db.get(self.tablename)
+		
+		try:
+			if value and label:
+				options = []
+				
+				if not options:
+					selection = db(table).select()
+					if selection: 
+						for row in :
+							if row.has_key(value) and row.has_key(label):
+								item = {'value': row.get(value), 'label': row.get(label)}
+							
+								if not item in options:
+									options.append(item)
+							else:
+								return False
+						return options
+					else:
+						return False
+				else:
+					return False
+			else:
+				return False
+		except Exception:
+			return False
+	
+	# This function mount a html element
+	def picker(self, fields={}, select={}, options={}):
+		# select => for the picker
+		# options => for all options in this select
+		try:
+			if fields and select and options:
+				pickerSelect = SELECT()
+				
+				
+		except Exception:
+			return False
