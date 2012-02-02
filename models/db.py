@@ -113,7 +113,9 @@ db.define_table('project',
 				Field('client_id', db.client),
 				Field('user_id', db.auth_user, default= auth.user_id),
 				signature)
-								
+
+db.project.client_id.widget = SQLFORM.widgets.options.widget(db.project, db.project.name, requires=[IS_NOT_EMPTY])
+
 # Briefing sub project table
 db.define_table('subproject', 
 				Field('name', 'string'),

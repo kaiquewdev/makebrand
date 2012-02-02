@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+
+<section class="mainContent">
+	<article>
+		
+		<header>
+			<h3> {{=T('New project')}} </h3>
+			<hr />
+			<nav class="mainGuideMenu">
+				<ul>
+					<li>
+						<a href="{{=URL('project', 'index')}}">{{=T('Return to projects')}}</a>
+					</li>
+				</ul>
+			</nav>
+			<hr />
+		</header>
+		
+		<div class="contentHolder">
+			<section>
+				<article>
+					<header>
+					</header>
+					<div>
+						{{=form}}
+					</div>
+					<footer>
+					</footer>
+				</article>
+			</section>
+		</div>
+		
+		<footer>
+		    
+		</footer>
+
+	</article>
+</section>

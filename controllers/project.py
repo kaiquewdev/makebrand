@@ -9,7 +9,15 @@ def index():
 
 @auth.requires_login()
 def new():
-	form = SQLFORM(db.project)
+	form = SQLFORM(db.project, fields=['name', 'description', 'client_id'])
+	
+	form.vars.terminated = False
+	if form.accepts(request, session):
+		response.flash = T('New project was created!')
+	elif form.errors:
+		response.flash = T('Please, verify the errors.')
+	else:
+		response.flash = T('Fill, the fields.')
 	
 	return {'form': form}
 
